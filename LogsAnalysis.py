@@ -1,6 +1,7 @@
 import psycopg2
 
 
+# Funciton to connect to database and run query
 def dbquery(query):
     db = psycopg2.connect("dbname=news")
     c = db.cursor()
@@ -10,12 +11,7 @@ def dbquery(query):
     return results
 
 
-def print_to_screen(title, results, string):
-    print title
-    for i in results:
-        print string
-
-
+# Queries and prints results 1
 def answer_one():
     query1 = "select title, popular from popular_articles limit 3;"
     results1 = dbquery(query1)
@@ -24,6 +20,7 @@ def answer_one():
         print '"' + str(r[0]) + '" --- ' + str(r[1]) + ' views.'
 
 
+# Queries and prints results 2
 def answer_two():
     query2 = "select name, pop_auth from popular_authors;"
     results2 = dbquery(query2)
@@ -32,6 +29,7 @@ def answer_two():
         print str(r[0]) + ' --- ' + str(r[1]) + ' views.'
 
 
+# Queries and prints results 3
 def answer_three():
     query3 = "select day, percent from v_errors_answer"
     results3 = dbquery(query3)
@@ -41,18 +39,23 @@ def answer_three():
             str(round(r[1]*100, 2)) + '% errors'
 
 
+# Writes queries into txt file
 def write_to_file():
+    # Create a txt file
     f = open("Answers.txt", "w+")
+    # Answers to question 1
     f.write("Top Three Arcticles:\n")
     query1 = "select title, popular from popular_articles limit 3;"
     results1 = dbquery(query1)
     for r in results1:
         f.write('\n"' + str(r[0]) + '" --- ' + str(r[1]) + ' views.')
+    # Answers to question 2
     f.write("\n\nMost Popular Authors of all Time:\n")
     query2 = "select name, pop_auth from popular_authors;"
     results2 = dbquery(query2)
     for r in results2:
         f.write('\n' + str(r[0]) + ' --- ' + str(r[1]) + ' views.')
+    # Answers to question 3
     f.write("\n\nDays with Errors Greater than One Percent:\n")
     query3 = "select day, percent from v_errors_answer"
     results3 = dbquery(query3)
