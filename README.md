@@ -68,6 +68,8 @@ The Program:
   python LogsAnalysis.py
   ```
 
+* Running the python file will print the results to the terminal, as well as create a text document, Answers.txt, with the results.
+
 ## Built with
 
 * [Python 2.7](https://www.python.org) - Used for creation of .py files
