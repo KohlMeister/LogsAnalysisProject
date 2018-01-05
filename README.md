@@ -5,7 +5,7 @@ Project 3 - Full Stack Web Developer
 ## Getting Starting
 
 The files within this repo will query a database and return the prescribed results to the screen.
-To get started, download the provided files within the reop.
+To get started, download the provided files within the repo.
 
 ### Files
 
