@@ -20,7 +20,7 @@ Prerequisits:
 
 The Program:
 * 6 views must be created in the database to generate the correct results. They are as follows:
-```sql
+  ```sql
   create view V_errors as
   select time::date as day, count(*) as errors 
   from log where status = '404 NOT FOUND' 
@@ -29,7 +29,7 @@ The Program:
   ```sql 
   create view v_total as
   select time::date as day, count(*) as total 
-  from log where status = '200 OK' 
+  from log 
   group by day;
   ```
   ```sql 
@@ -43,7 +43,7 @@ The Program:
   create view popular_articles as
   select a.title, count(l.path) as popular 
   from articles a, log l 
-  where concat('/arcitle/', a.slug) = l.path 
+  where concat('/article/', a.slug) = l.path 
   group by a.title 
   order by popular desc;
   ```
